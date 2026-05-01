@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | EPICOM Security</title>
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Security Headers (Client-side) -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- Background Canvas -->
+  <div class="admin-bg">
+    <div class="glow-orb"></div>
+  </div>
+
+  <!-- ── LOGIN GATE ── -->
+  <div id="loginGate" class="glass-panel login-gate">
+    <div class="login-header">
+      <h2><span class="logo-e">E</span>PICOM</h2>
+      <p>Secure Admin Access</p>
+    </div>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="adminKey">Authorization Key</label>
+        <input type="password" id="adminKey" required autocomplete="current-password" placeholder="Enter key...">
+      </div>
+      <button type="submit" class="btn-login" id="loginBtn">Authenticate</button>
+      <p id="loginError" class="login-error"></p>
+    </form>
+  </div>
+
+  <!-- ── ADMIN DASHBOARD (Hidden by default) ── -->
+  <div id="adminDashboard" class="admin-dashboard hidden">
+    
+    <header class="admin-header glass-panel">
+      <div class="header-brand">
+        <h2><span class="logo-e">E</span>PICOM <span>Admin</span></h2>
+      </div>
+      <div class="header-actions">
+        <span class="admin-user">epicomsecuritysystem3@gmail.com</span>
+        <button id="logoutBtn" class="btn-logout">Lock System</button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="tabs-wrapper glass-panel">
+        <button class="tab-btn active" data-tab="orders">
+          Products & Hardware Requests
+          <span class="notification-dot" id="ordersNotif"></span>
+        </button>
+        <button class="tab-btn" data-tab="services">
+          Service & Labor Consultations
+          <span class="notification-dot" id="servicesNotif"></span>
+        </button>
+      </div>
+
+      <!-- Orders Tab Content -->
+      <div id="tab-orders" class="tab-content active glass-panel">
+        <div class="tab-header">
+          <h3>Hardware Enquiries</h3>
+          <button class="btn-export" onclick="exportCSV('orders')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Download CSV
+          </button>
+        </div>
+        <div class="table-container">
+          <table id="ordersTable">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Contact</th>
+                <th>Hardware Requested</th>
+                <th>Notes</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTbody">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+          <div id="ordersEmpty" class="empty-state">No product orders found.</div>
+        </div>
+      </div>
+
+      <!-- Services Tab Content -->
+      <div id="tab-services" class="tab-content glass-panel">
+        <div class="tab-header">
+          <h3>Service Consultations</h3>
+          <button class="btn-export" onclick="exportCSV('services')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            Download CSV
+          </button>
+        </div>
+        <div class="table-container">
+          <table id="servicesTable">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Req ID</th>
+                <th>Client</th>
+                <th>Contact</th>
+                <th>Services Requested</th>
+                <th>Notes</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="servicesTbody">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+          <div id="servicesEmpty" class="empty-state">No service requests found.</div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Delete Confirm Modal -->
+  <div id="deleteModal" class="modal-overlay hidden">
+    <div class="glass-panel modal-content">
+      <h3>Delete Request</h3>
+      <p>Are you sure you want to permanently delete this record?</p>
+      <div class="modal-actions">
+        <button id="cancelDeleteBtn" class="btn-ghost">Cancel</button>
+        <button id="confirmDeleteBtn" class="btn-danger">Delete Record</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
