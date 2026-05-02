@@ -1,0 +1,9 @@
+# Configuration files
+config.js
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dependencies (if any)
+node_modules/

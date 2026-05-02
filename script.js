@@ -422,7 +422,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 // IMPORTANT: Initialize EmailJS with Public Key
 (function() {
   // TODO: Replace with real Public Key from EmailJS
-  emailjs.init("PLACEHOLDER_PUBLIC_KEY");
+  emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
 })();
 
 document.getElementById('enquiryForm').addEventListener('submit', function(e) {
@@ -464,7 +464,7 @@ document.getElementById('enquiryForm').addEventListener('submit', function(e) {
   btnText.textContent = 'Sending...';
 
   // TODO: Replace with real Service ID and Template ID
-  emailjs.send('PLACEHOLDER_SERVICE_ID', 'PLACEHOLDER_TEMPLATE_ID', templateParams)
+  emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_ID, templateParams)
     .then(function() {
       showToast('Enquiry sent successfully! Our team will contact you shortly.');
       clearCart();

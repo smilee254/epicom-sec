@@ -1,6 +1,6 @@
-/* ── CONFIG ── */
-const ADMIN_KEY = '0728811032'; // From Requirements
-const WHITELIST_EMAIL = 'epicomsecuritysystem3@gmail.com';
+/* ── CONFIG (From config.js) ── */
+const ADMIN_HASH = CONFIG.ADMIN_HASH;
+const WHITELIST_EMAIL = CONFIG.WHITELIST_EMAIL;
 const DB_KEY = 'epicom_admin_orders';
 const AUTH_KEY = 'epicom_admin_auth';
 
@@ -44,7 +44,15 @@ function getLockoutStatus() {
   return { attempts, lockoutTime };
 }
 
-loginForm.addEventListener('submit', (e) => {
+async function hashString(str) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(str);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   
   const status = getLockoutStatus();
@@ -63,8 +71,9 @@ loginForm.addEventListener('submit', (e) => {
   }
 
   const keyInput = document.getElementById('adminKey').value;
+  const hashedInput = await hashString(keyInput);
 
-  if (keyInput === ADMIN_KEY) {
+  if (hashedInput === ADMIN_HASH) {
     // Success
     localStorage.setItem('admin_login_attempts', '0');
     sessionStorage.setItem(AUTH_KEY, 'true');
