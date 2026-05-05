@@ -275,7 +275,7 @@ function updateCartUI() {
       el.className = 'cart-item';
       
       const imgHTML = item.img 
-        ? `<img src="${item.img}" alt="" class="cart-item-img">`
+        ? (item.img.match(/\.(mp4|webm)$/i) ? `<video src="${item.img}" class="cart-item-img" autoplay muted loop playsinline></video>` : `<img src="${item.img}" alt="" class="cart-item-img">`)
         : `<div class="cart-item-img" style="display:flex;align-items:center;justify-content:center;background:var(--bg3);border:1px solid var(--border);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--grey)" stroke-width="1.5"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>`;
 
       el.innerHTML = `
@@ -323,7 +323,7 @@ function renderProducts(filter = 'all') {
     return p.cat === filter;
   }).forEach((p, i) => {
     const imgHTML = p.img
-      ? `<img src="${p.img}" alt="${p.alt}" class="product-img" loading="lazy">`
+      ? (p.img.match(/\.(mp4|webm)$/i) ? `<video src="${p.img}" class="product-img" autoplay muted loop playsinline></video>` : `<img src="${p.img}" alt="${p.alt}" class="product-img" loading="lazy">`)
       : `<div class="product-svg-wrap">${p.svg}</div>`;
 
     const specsHTML = p.specs.map(s => `<li>${s}</li>`).join('');
