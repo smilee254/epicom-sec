@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="style.css">
   <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
@@ -152,8 +153,8 @@
       <h1 class="hero-headline">Smart Security.<br>Trusted Protection.</h1>
       <p class="hero-sub">Transforming how you live, work, and protect what matters most.</p>
       <div class="hero-actions">
-        <a href="#inventory" class="btn-primary">Shop Now</a>
-        <a href="#about" class="btn-ghost">Our Story</a>
+        <a href="#inventory" class="inline-flex items-center justify-center bg-[#cc0000] text-white px-8 py-4 font-bold rounded-sm hover:bg-red-700 transition-colors">Shop Now</a>
+        <a href="#about" class="inline-flex items-center justify-center border-2 border-white text-white px-8 py-4 font-bold rounded-sm hover:bg-white hover:text-black transition-colors">Our Story</a>
       </div>
     </div>
     <div class="hero-scroll">
@@ -163,8 +164,8 @@
   </section>
 
   <!-- ── ABOUT / CEO ── -->
-  <section id="about" class="section">
-    <div class="container">
+  <section id="about" class="py-20 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6">
       <div class="about-grid">
         <div class="about-image-col">
           <div class="ceo-portrait-wrap reveal-left">
@@ -177,8 +178,8 @@
           </div>
         </div>
         <div class="about-content-col reveal-right">
-          <div class="section-eyebrow">Leadership</div>
-          <h2 class="section-title">The Visionary<br>Behind EPICOM</h2>
+          <div class="text-[#cc0000] font-bold tracking-widest uppercase text-sm mb-4">Leadership</div>
+          <h2 class="text-4xl md:text-5xl font-black text-white mb-6">The Visionary<br>Behind EPICOM</h2>
           <blockquote class="ceo-quote">
             "We are driven by a vision to transform everyday spaces into secure, intelligent, and efficient
             environments."
@@ -204,7 +205,7 @@
 
   <!-- ── BRIDGE ── -->
   <section id="shop-bridge">
-    <div class="container" style="text-align:center;">
+    <div class="max-w-7xl mx-auto px-6" style="text-align:center;">
       <div class="bridge-content reveal-up">
         <div class="bridge-line"></div>
         <p class="bridge-eyebrow">Our Product &amp; Services Catalog</p>
@@ -222,12 +223,12 @@
   </section>
 
   <!-- ── INVENTORY ── -->
-  <section id="inventory" class="section">
-    <div class="container">
+  <section id="inventory" class="py-20 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6">
       <div class="section-header reveal-up">
-        <div class="section-eyebrow">Product &amp; Services Catalog</div>
-        <h2 class="section-title">Security In Motion</h2>
-        <p class="section-desc">Enterprise-grade protection systems and professional services for residential,
+        <div class="text-[#cc0000] font-bold tracking-widest uppercase text-sm mb-4">Product &amp; Services Catalog</div>
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Security In Motion</h2>
+        <p class="text-gray-400 text-lg leading-relaxed max-w-3xl">Enterprise-grade protection systems and professional services for residential,
           commercial, and industrial environments.</p>
       </div>
       <div class="filter-bar reveal-up">
@@ -246,12 +247,12 @@
   </section>
 
   <!-- ── HOW WE WORK ── -->
-  <section id="process" class="section" style="background:var(--bg2);">
-    <div class="container">
+  <section id="process" class="py-20 lg:py-32" style="background:var(--bg2);">
+    <div class="max-w-7xl mx-auto px-6">
       <div class="section-header reveal-up">
-        <div class="section-eyebrow">Our Process</div>
-        <h2 class="section-title">How We Work</h2>
-        <p class="section-desc">A proven 7-step methodology that ensures every installation is flawless, on-time, and
+        <div class="text-[#cc0000] font-bold tracking-widest uppercase text-sm mb-4">Our Process</div>
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6">How We Work</h2>
+        <p class="text-gray-400 text-lg leading-relaxed max-w-3xl">A proven 7-step methodology that ensures every installation is flawless, on-time, and
           built to last.</p>
       </div>
       <div class="process-grid">
@@ -303,10 +304,10 @@
 
   <!-- ── CLIENTS ── -->
   <section id="clients" style="background:#000;padding:5rem 0;border-top:1px solid rgba(255,255,255,0.07);">
-    <div class="container">
+    <div class="max-w-7xl mx-auto px-6">
       <div class="section-header reveal-up" style="text-align:center;max-width:600px;margin:0 auto 3rem;">
-        <div class="section-eyebrow">Who We Serve</div>
-        <h2 class="section-title">Built For Every Environment</h2>
+        <div class="text-[#cc0000] font-bold tracking-widest uppercase text-sm mb-4">Who We Serve</div>
+        <h2 class="text-4xl md:text-5xl font-black text-white mb-6">Built For Every Environment</h2>
       </div>
       <div class="clients-row">
         <div class="client-pill reveal-up">
@@ -331,7 +332,7 @@
 
   <!-- ── FOOTER / CONTACT ── -->
   <footer id="contact">
-    <div class="container">
+    <div class="max-w-7xl mx-auto px-6">
       <div class="footer-grid">
         <div class="footer-brand">
           <span class="nav-logo" style="display:block;margin-bottom:1.2rem;font-size:1.8rem;"><span
@@ -372,7 +373,7 @@
             <div class="contact-text">Nairobi, Kenya</div>
           </div>
           <div class="contact-item" style="margin-top:1.5rem;">
-            <a href="tel:+254728811032" class="btn-primary" style="font-size:0.75rem;padding:0.8rem 1.5rem;">Call Us
+            <a href="tel:+254728811032" class="inline-flex items-center justify-center bg-[#cc0000] text-white px-8 py-4 font-bold rounded-sm hover:bg-red-700 transition-colors" style="font-size:0.75rem;padding:0.8rem 1.5rem;">Call Us
               Now</a>
           </div>
         </div>
@@ -405,6 +406,7 @@
   </div>
 
   <script src="config.js"></script>
+  <script src="data.js"></script>
   <script src="script.js"></script>
 </body>
 
