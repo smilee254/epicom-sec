@@ -21,9 +21,8 @@
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <!-- EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="animation.css">
 </head>
 
 <body>
@@ -49,15 +48,6 @@
     </div>
     <div class="nav-right">
       <a href="tel:+254728811032" class="nav-cta">+254 728 811 032</a>
-      <button class="cart-toggle-btn" id="cartToggleBtn" aria-label="Open Cart">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="9" cy="21" r="1" />
-          <circle cx="20" cy="21" r="1" />
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-        </svg>
-        <span class="cart-badge" id="cartBadge">0</span>
-      </button>
       <button class="nav-menu-btn" id="menuBtn" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -72,72 +62,6 @@
     <a href="#contact" class="mobile-link">Contact</a>
     <a href="tel:+254728811032" class="mobile-link highlight">+254 728 811 032</a>
   </div>
-
-  <!-- ══════════════════════════════════════════ -->
-  <!--  SLIDE-OUT CART PANEL                      -->
-  <!-- ══════════════════════════════════════════ -->
-  <div class="cart-overlay" id="cartOverlay"></div>
-  <aside class="cart-panel" id="cartPanel" aria-label="Shopping Enquiry Cart">
-    <div class="cart-header">
-      <div>
-        <h2 class="cart-title">Your Enquiry</h2>
-        <p class="cart-subtitle">Items will be sent as an enquiry to our team.</p>
-      </div>
-      <button class="cart-close-btn" id="cartCloseBtn" aria-label="Close Cart">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M18 6 6 18M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
-
-    <div class="cart-items-wrap" id="cartItemsWrap">
-      <!-- Items injected by JS -->
-      <div class="cart-empty" id="cartEmpty">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-          opacity="0.3">
-          <circle cx="9" cy="21" r="1" />
-          <circle cx="20" cy="21" r="1" />
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-        </svg>
-        <p>No items added yet.<br>Browse our solutions below.</p>
-      </div>
-    </div>
-
-    <div class="cart-checkout" id="cartCheckout">
-      <div class="cart-summary">
-        <span class="cart-summary-label">Total Items</span>
-        <span class="cart-summary-count" id="cartSummaryCount">0</span>
-      </div>
-      <hr class="cart-divider">
-      <form class="enquiry-form" id="enquiryForm" novalidate>
-        <!-- CSRF token (hidden) -->
-        <input type="hidden" id="csrfToken" name="csrf_token">
-        <div class="form-group">
-          <label for="enquiryName">Full Name *</label>
-          <input type="text" id="enquiryName" name="from_name" placeholder="John Kamau" required autocomplete="name">
-        </div>
-        <div class="form-group">
-          <label for="enquiryPhone">Phone Number *</label>
-          <input type="tel" id="enquiryPhone" name="phone" placeholder="+254 7XX XXX XXX" required autocomplete="tel">
-        </div>
-        <div class="form-group">
-          <label for="enquiryEmail">Email Address</label>
-          <input type="email" id="enquiryEmail" name="reply_to" placeholder="you@example.com" autocomplete="email">
-        </div>
-        <div class="form-group">
-          <label for="enquiryMsg">Additional Notes</label>
-          <textarea id="enquiryMsg" name="message" rows="3"
-            placeholder="Location, site details, or any specific requirements…"></textarea>
-        </div>
-        <button type="submit" class="enquiry-submit-btn" id="enquirySubmitBtn">
-          <span id="enquiryBtnText">Send Enquiry</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M22 2 11 13M22 2 15 22 11 13 2 9l20-7z" />
-          </svg>
-        </button>
-      </form>
-    </div>
-  </aside>
 
   <!-- ── TOAST NOTIFICATION ── -->
   <div class="toast" id="toast"></div>
@@ -210,7 +134,7 @@
         <div class="bridge-line"></div>
         <p class="bridge-eyebrow">Our Product &amp; Services Catalog</p>
         <h2 class="bridge-title">Hardware &amp; Installation<br>Services — All In One Place</h2>
-        <p class="bridge-sub">Browse products and services, add them to your enquiry cart, and our team will contact you
+        <p class="bridge-sub">Browse our products and services, and our team will contact you
           with a custom quote.</p>
         <a href="#inventory" class="btn-explore" id="inventoryBtn">
           <span>EXPLORE CATALOG</span>
@@ -242,6 +166,19 @@
       </div>
       <div class="inventory-grid" id="inventoryGrid">
         <!-- Cards injected by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ANIMATED STORY ── -->
+  <section id="story" class="section" style="background:var(--bg-solid); overflow:hidden; padding-top: 5rem; padding-bottom: 5rem;">
+    <div class="container">
+      <div class="section-header reveal-up" style="text-align: center; margin-bottom: 3rem;">
+        <div class="section-eyebrow">The EPICOM Experience</div>
+        <h2 class="section-title">Seamless Security Integration</h2>
+      </div>
+      <div class="animation-container" id="animationContainer">
+        <!-- Scenes will be injected and controlled by animation.js -->
       </div>
     </div>
   </section>
@@ -408,6 +345,7 @@
   <script src="config.js"></script>
   <script src="data.js"></script>
   <script src="script.js"></script>
+  <script src="animation.js"></script>
 </body>
 
 </html>

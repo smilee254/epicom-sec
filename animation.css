@@ -1,0 +1,237 @@
+/* animation.css - Completely Rebuilt for 720p and SVG Walk Cycles */
+.anim-wrapper {
+  width: 100%;
+  max-width: 1280px;
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  background: #001122;
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+  font-family: var(--font-body);
+  color: #fff;
+}
+
+.anim-inner {
+  width: 1280px;
+  height: 720px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+}
+
+.anim-scene {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.anim-scene.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- SVG CHARACTER --- */
+.svg-char { width: 180px; height: 360px; }
+.char-body { fill: #a8b2d1; }
+.char-limb-back { fill: #6a7a9c; }
+.char-limb-front { fill: #c1c9de; }
+.char-accent { fill: #00f0ff; }
+
+/* Walk Cycle Keyframes */
+@keyframes swingLegL {
+  0% { transform: translate(90px, 180px) rotate(30deg); }
+  100% { transform: translate(90px, 180px) rotate(-30deg); }
+}
+@keyframes swingLegR {
+  0% { transform: translate(90px, 180px) rotate(-30deg); }
+  100% { transform: translate(90px, 180px) rotate(30deg); }
+}
+@keyframes swingArmL {
+  0% { transform: translate(90px, 105px) rotate(-25deg); }
+  100% { transform: translate(90px, 105px) rotate(25deg); }
+}
+@keyframes swingArmR {
+  0% { transform: translate(90px, 105px) rotate(25deg); }
+  100% { transform: translate(90px, 105px) rotate(-25deg); }
+}
+@keyframes bodyBob {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-12px); }
+}
+
+.walking .leg-left { animation: swingLegL 1.2s infinite ease-in-out alternate; }
+.walking .leg-right { animation: swingLegR 1.2s infinite ease-in-out alternate; }
+.walking .arm-left { animation: swingArmL 1.2s infinite ease-in-out alternate; }
+.walking .arm-right { animation: swingArmR 1.2s infinite ease-in-out alternate; }
+.walking .svg-char-group { animation: bodyBob 0.6s infinite ease-in-out alternate; }
+
+/* --- LOBBY --- */
+.anim-lobby { background: linear-gradient(180deg, #001B3A, #000c1a); width: 100%; height: 100%; position: relative; }
+.anim-desk {
+  position: absolute; bottom: 60px; right: 150px;
+  width: 300px; height: 180px;
+  background: linear-gradient(135deg, #0a3663, #051b33);
+  border-radius: 12px 12px 0 0;
+  border-top: 6px solid #00f0ff;
+}
+.anim-computer {
+  position: absolute; bottom: 240px; right: 300px;
+  width: 90px; height: 60px; background: #222; border: 3px solid #555;
+}
+.anim-receptionist { position: absolute; bottom: 120px; right: 225px; }
+.anim-client { position: absolute; bottom: 60px; left: -225px; transition: transform 5s linear; }
+.anim-client.walk-in { transform: translateX(750px); }
+
+/* Screen Details */
+.anim-screen-zoom {
+  position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) scale(0);
+  width: 570px; height: 360px;
+  background: rgba(0, 10, 20, 0.95);
+  border: 2px solid #00f0ff; border-radius: 18px;
+  padding: 45px; opacity: 0;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 75px rgba(0, 240, 255, 0.2);
+  font-family: monospace; color: #00f0ff; font-size: 1.6rem;
+}
+.anim-screen-zoom.show { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+.anim-typing::after { content: '|'; animation: blink 0.5s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Smart Card interaction */
+.anim-card {
+  position: absolute; bottom: 195px; right: 390px;
+  width: 60px; height: 37px;
+  background: #fff; border-radius: 5px;
+  opacity: 0; transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 0 22px rgba(255,255,255,0.8);
+}
+.anim-card.give { opacity: 1; transform: translate(-225px, -30px); }
+.anim-client .arm-right.reach { transition: transform 1s ease; transform: translate(90px, 105px) rotate(70deg); }
+.anim-receptionist .arm-left.reach { transition: transform 1s ease; transform: translate(90px, 105px) rotate(-60deg); }
+
+/* --- HALLWAY & ELEVATOR --- */
+.anim-hallway { background: linear-gradient(90deg, #001B3A, #00264d); width: 100%; height: 100%; position: relative; }
+.anim-elevator {
+  position: absolute; bottom: 60px; left: 75px;
+  width: 210px; height: 420px;
+  background: #0a1f33; border: 6px solid #334; overflow: hidden;
+}
+.anim-elevator-doors {
+  position: absolute; inset: 0; background: #6a7a9c;
+  display: flex; transition: all 1.5s ease;
+}
+.anim-elevator-doors::before, .anim-elevator-doors::after { content: ''; flex: 1; border: 2px solid #556; }
+.anim-elevator-doors.open { transform: scaleX(0); }
+.anim-floor-display { position: absolute; top: 150px; left: 157px; color: #f00; font-family: monospace; font-size: 2.2rem; }
+
+.anim-door {
+  position: absolute; bottom: 60px; right: 120px;
+  width: 225px; height: 420px;
+  background: #0d2847; border: 4px solid #1a528a;
+  transform-origin: right; transition: transform 2s ease;
+  transform-style: preserve-3d;
+}
+.anim-door.open { transform: perspective(1200px) rotateY(-80deg); }
+
+/* SVG Door Lock */
+.anim-door-lock-svg {
+  position: absolute; top: 210px; left: 22px;
+  width: 50px; height: 50px;
+}
+.lock-body {
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 30px; height: 30px; background: #222; border-radius: 4px; border: 2px solid #555;
+}
+.lock-shackle {
+  position: absolute; top: 2px; left: 50%; transform: translateX(-50%);
+  width: 16px; height: 24px; border: 4px solid #777; border-bottom: none; border-radius: 8px 8px 0 0;
+  transition: transform 0.5s ease;
+}
+.lock-light {
+  position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+  width: 8px; height: 8px; border-radius: 50%; background: #f00; box-shadow: 0 0 5px #f00;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.anim-door-lock-svg.unlocked .lock-light { background: #0f0; box-shadow: 0 0 10px #0f0; }
+.anim-door-lock-svg.unlocked .lock-shackle { transform: translateX(-50%) translateY(-5px); }
+
+.anim-client-door { position: absolute; bottom: 60px; left: 105px; opacity: 0; transition: transform 4s linear, opacity 1s; }
+.anim-client-door.show { opacity: 1; }
+.anim-client-door.walk-door { transform: translateX(750px); }
+
+/* Card Use */
+.anim-client-door .arm-right.use-card { transition: transform 1s ease; transform: translate(90px, 105px) rotate(60deg); }
+.anim-card-use { position: absolute; top: 135px; left: 120px; width: 45px; height: 27px; background: #fff; opacity: 0; transition: opacity 0.3s; box-shadow: 0 0 15px #fff; }
+.anim-client-door.use-card .anim-card-use { opacity: 1; }
+
+/* --- ROOM & CURTAINS --- */
+.anim-room { background: #001224; width: 100%; height: 100%; position: relative; overflow: hidden; }
+.anim-window {
+  position: absolute; top: 90px; left: 50%; transform: translateX(-50%);
+  width: 750px; height: 450px; background: #87CEEB;
+  border: 9px solid #1a2a40; overflow: hidden;
+}
+.anim-sun { position: absolute; bottom: -30px; right: 75px; width: 90px; height: 90px; background: #FFD700; border-radius: 50%; transition: transform 4s ease-out; }
+.anim-window.morning .anim-sun { transform: translateY(-225px); }
+
+/* CSS Fabric Curtains */
+.anim-curtain-l, .anim-curtain-r {
+  position: absolute; top: 0; bottom: 0; width: 51%;
+  background: linear-gradient(90deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%);
+  transition: transform 3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+}
+.anim-curtain-l { left: 0; transform-origin: left; border-right: 3px solid #0a1f33; }
+.anim-curtain-r { right: 0; transform-origin: right; border-left: 3px solid #0a1f33; }
+.fold { flex: 1; height: 100%; background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0) 100%); }
+.anim-curtains-open .anim-curtain-l { transform: scaleX(0.15); }
+.anim-curtains-open .anim-curtain-r { transform: scaleX(0.15); }
+
+.anim-client-room { position: absolute; bottom: 60px; left: -225px; transition: transform 3s linear; }
+.anim-client-room.walk-in { transform: translateX(450px); }
+.anim-client-room .arm-right.use-remote { transition: transform 0.5s ease; transform: translate(90px, 105px) rotate(80deg); }
+.anim-remote { position: absolute; top: 135px; left: 120px; width: 18px; height: 37px; background: #333; border-radius:5px; opacity:0; }
+.anim-client-room.use-remote .anim-remote { opacity: 1; }
+
+.anim-phone-desk { position: absolute; bottom: 60px; right: 225px; width: 150px; height: 120px; background: #0a1f33; border-radius: 6px 6px 0 0; }
+.anim-phone-obj { position: absolute; top: -60px; left: 30px; width: 90px; height: 90px; }
+.phone-base { position: absolute; bottom: 0; left: 10%; width: 80%; height: 40%; background: #222; border-radius: 10px 10px 0 0; border: 2px solid #444; }
+.phone-handset { position: absolute; top: 10px; left: 5%; width: 90%; height: 20%; background: #111; border-radius: 10px; border: 2px solid #333; }
+
+/* --- SPLIT SCREEN --- */
+.anim-split { display: flex; width: 100%; height: 100%; }
+.anim-split-left, .anim-split-right { flex: 1; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.anim-split-left { background: #001224; border-right: 6px solid #00f0ff; }
+.anim-split-right { background: #001B3A; }
+
+.anim-split .svg-char { transform: scale(2.2); }
+.anim-split .arm-right.phone { transform: translate(90px, 105px) rotate(-140deg); }
+.anim-split .arm-left.headset { transform: translate(90px, 105px) rotate(130deg); }
+
+.anim-bubble {
+  position: absolute; top: 15%; left: 50%; transform: translateX(-50%) scale(0);
+  background: #fff; color: #001B3A; padding: 22px 37px; border-radius: 45px;
+  font-size: 1.8rem; font-weight: 700; white-space: nowrap;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.3);
+}
+.anim-bubble.show { transform: translateX(-50%) scale(1); }
+.anim-bubble::after {
+  content: ''; position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%);
+  border-width: 15px 15px 0; border-style: solid; border-color: #fff transparent transparent;
+}
+
+/* --- OUTRO --- */
+.anim-outro { background: #000; color: #fff; flex-direction: column; text-align: center; justify-content: center; width:100%; height:100%; display: flex; }
+.anim-outro h2 { font-family: var(--font-head); font-size: 6rem; color: #fff; letter-spacing: 0.2em; margin-bottom: 22px; opacity: 0; transform: translateY(45px); transition: all 1.5s ease; }
+.anim-outro h2 span { color: #00f0ff; }
+.anim-outro p { font-size: 2.2rem; color: #a8b2d1; opacity: 0; transform: translateY(30px); transition: all 1.5s ease 0.8s; }
+.anim-outro.show h2, .anim-outro.show p { opacity: 1; transform: translateY(0); }
